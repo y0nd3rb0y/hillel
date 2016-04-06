@@ -3,10 +3,16 @@ package hillel;
 
 public class Application {
     public static void main(String[] args) {
-        int[] array = new int[10];
-        array=ArrayUtil.fillArray(array, 100);
-        ArrayUtil.printArray(array);
-        System.out.println("Resulting array: ");
-        ArrayUtil.printArray(Sorting.selectionSort(array));
+        int[] array1 = new int[20];
+        array1=ArrayUtil.fillArray(array1, 100);
+        int[] array2 = array1.clone();
+        ArrayUtil.printArray(array1);
+
+        System.out.print("Array sorted by selection sort: ");
+        ArrayUtil.printArray(Sorting.selectionSort(array1));
+        
+        System.out.print("Array sorted by merge sort: ");
+        ArrayUtil.printArray(Sorting.measureMergeSort(array2));
+
     }
 }
