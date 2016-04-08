@@ -10,7 +10,7 @@ public class Application {
 
         System.out.print("Array sorted by selection sort: ");
         ArrayUtil.printArray(Sorting.selectionSort(array1));
-        
+
         System.out.print("Array sorted by merge sort: ");
         ArrayUtil.printArray(Sorting.measureMergeSort(array2));
 
