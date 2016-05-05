@@ -1,7 +1,7 @@
 package com.collections;
 
-import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Random;
 
 public class ArrayList implements IList {
 
@@ -9,14 +9,14 @@ public class ArrayList implements IList {
     private String[] array;
     private int size;
 
-    ArrayList(){
+    ArrayList() {
         this(INITIAL_CAPACITY);
         //array = new String[INITIAL_CAPACITY];
     }
 
-    ArrayList(int capacity){
+    ArrayList(int capacity) {
         array = new String[capacity];
-        size=0;
+        size = 0;
     }
 
     @Override
@@ -31,8 +31,8 @@ public class ArrayList implements IList {
 
     @Override
     public boolean contains(String element) {
-        for(int i=0;i<size;i++){
-            if(array[i].equals(element)) return true;
+        for (int i = 0; i < size; i++) {
+            if (array[i].equals(element)) return true;
         }
         return false;
     }
@@ -40,22 +40,22 @@ public class ArrayList implements IList {
     @Override
     public void add(String element) {
         resize();
-        array[size]=element;
+        array[size] = element;
         size++;
     }
 
-    private void resize(){
-        if(size == array.length){
+    private void resize() {
+        if (size == array.length) {
             String[] arrayNew = new String[array.length * 2];
-            for(int i =0; i<size; i++) {
+            for (int i = 0; i < size; i++) {
                 arrayNew[i] = array[i];
             }
             array = arrayNew;
         }
 
-        if(size < 0.25 * array.length){
-            String[]arrayNew = new String[array.length/2];
-            for(int i=0; i<size;i++){
+        if (size < 0.25 * array.length) {
+            String[] arrayNew = new String[array.length / 2];
+            for (int i = 0; i < size; i++) {
                 arrayNew[i] = array[i];
             }
             array = arrayNew;
@@ -66,41 +66,41 @@ public class ArrayList implements IList {
     @Override
     public String set(int index, String element) {
         String oldElement = array[index];
-        array[index]=element;
+        array[index] = element;
         return oldElement;
     }
 
     @Override
     public void remove(int index) {
-        if(index<size){
-            for(int i=index; i<size;i++) {
-                array[index]=array[index+1];
+        if (index < size) {
+            for (int i = index; i < size; i++) {
+                array[index] = array[index + 1];
             }
         }
-        array[size]=null;
+        array[size] = null;
         size--;
         resize();
     }
 
     @Override
     public void remove(String element) {
-        for(int i =0; i<array.length; i++){
-            if(array[i].equals(element)) remove(i);
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].equals(element)) remove(i);
         }
     }
 
     @Override
     public void clear() {
-        for(int i =0; i<array.length; i++){
-            array[i]=null;
-            size=0;
+        for (int i = 0; i < array.length; i++) {
+            array[i] = null;
+            size = 0;
         }
     }
 
     @Override
     public int indexOf(String element) {
-        for(int i =0; i<array.length; i++) {
-            if (array[i].equals(element)){
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].equals(element)) {
                 return i;
             }
         }
@@ -121,32 +121,51 @@ public class ArrayList implements IList {
         return new BackwardListIterator(array, size);
     }
 
-    public String toString(){
+    public String toString() {
         String elements = "[ ";
-        for(int i=0; i<size; i++){
-            if(i!=size-1){
-                elements+=array[i]+", ";
+        for (int i = 0; i < size; i++) {
+            if (i != size - 1) {
+                elements += array[i] + ", ";
             } else {
-                elements+=array[i];
+                elements += array[i];
             }
 
         }
-        elements+=" ]";
+        elements += " ]";
         return elements;
     }
 
     private class ListIterator implements Iterator {
 
-        private int current =0;
+        private int current = 0;
 
         @Override
         public boolean hasNext() {
-            return current<size;
+            return current < size;
 
         }
 
         @Override
         public Object next() {
+            String element = array[current];
+            current++;
+            return element;
+        }
+    }
+
+    private class RandomIterator implements Iterator {
+
+        Random random = new Random();
+        private int[] current = new int[size];
+
+        @Override
+        public boolean hasNext() {
+            return int[size]!=null;
+        }
+
+        @Override
+        public Object next() {
+            int current = random(size);
             String element = array[current];
             current++;
             return element;
