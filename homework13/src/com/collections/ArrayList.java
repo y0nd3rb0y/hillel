@@ -159,7 +159,7 @@ public class ArrayList implements IList {
         }
     }
 
-    private class RandomListIterator implements Iterator {
+    private class RandomListIterator extends ListIterator implements Iterator {
         private Random random = new Random();
         private String[] shuffledArray = Arrays.copyOf(array, size);
         private int current = 0;
@@ -171,11 +171,6 @@ public class ArrayList implements IList {
                 shuffledArray[i] = shuffledArray[i + j];
                 shuffledArray[i + j] = tmp;
             }
-        }
-
-        @Override
-        public boolean hasNext() {
-            return current < size;
         }
 
         @Override
