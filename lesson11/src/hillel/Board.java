@@ -5,13 +5,17 @@ import java.util.Arrays;
 
 public class Board {
     char[][] board = new char[3][3];
-    char currentPlayer;
+    Player playerX;
+    Player playerO;
+    Player currentPlayer;
 
-    public Board() {
+    public Board(Player playerX, Player playerO) {
         for (int i = 0; i < board.length; i++) {
                 Arrays.fill(board[i], ' ');
         }
-        currentPlayer = 'X';
+        this.playerX = playerX;
+        this.playerO = playerO;
+        this.currentPlayer = playerX;
     }
 
     public void printBoard() {
@@ -36,7 +40,7 @@ public class Board {
         int x = Character.getNumericValue(move.charAt(0));
         int y = Character.getNumericValue(move.charAt(1));
         if (!isMoveValid(x, y)) return false;
-        board[x][y] = currentPlayer;
+        board[x][y] = currentPlayer.getMark();
         changeCurrentPlayer();
         return true;
 
@@ -47,10 +51,10 @@ public class Board {
     }
 
     private void changeCurrentPlayer(){
-        if(currentPlayer=='X'){
-            currentPlayer='O';
+        if(currentPlayer.getMark()=='X'){
+            currentPlayer = playerO;
         } else {
-            currentPlayer='X';
+            currentPlayer = playerX;
         }
     }
     private boolean isMoveValid(int x, int y) {
