@@ -36,7 +36,8 @@ public class Board {
         return false;
     }
 
-    public boolean makeMove(String move) {
+    public boolean makeMove() {
+        String move = currentPlayer.makeMove();
         int x = Character.getNumericValue(move.charAt(0));
         int y = Character.getNumericValue(move.charAt(1));
         if (!isMoveValid(x, y)) return false;

@@ -1,6 +1,6 @@
 package hillel;
 
-public class Player {
+public abstract class Player {
     String lastname;
     String firstname;
     int age;
@@ -27,5 +27,5 @@ public class Player {
         return firstname+" "+lastname;
     }
 
-
+    public abstract String makeMove();
 }
