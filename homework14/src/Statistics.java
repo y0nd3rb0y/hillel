@@ -8,12 +8,13 @@ public class Statistics {
         results.add(result);
     }
 
-    public void printStatistics(){
+    public String toString(){
 
-        System.out.println("Player\tResult\tDate");
+        String statistics = "Player\t\t\tResult\t\t\tDate\n";
         for(RoundResult result : results){
-            System.out.println(result.getPlayer()+"\t"+result.getRoundResult()+"\t"+result.getDate());
+            statistics += result+"\n";
         }
+        return statistics;
     }
 
 

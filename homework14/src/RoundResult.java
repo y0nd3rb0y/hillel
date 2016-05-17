@@ -24,6 +24,8 @@ public class RoundResult {
         this.date = new Date();
     }
 
-    public String toString;
+    public String toString(){
+        return player.toString()+"\t\t\t"+result+"\t\t\t"+date;
+    }
 
 }

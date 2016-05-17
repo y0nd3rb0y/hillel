@@ -13,10 +13,10 @@ public class Game {
             while (ticTacToe.checkGameState()) {
                 ticTacToe.makeMove();
             }
-            
+
             if(ticTacToe.isGameFinished()) break;
             statistics.addResult(new RoundResult(ticTacToe.getWinner(), "wins"));
         }
-        statistics.printStatistics();
+        System.out.println(statistics);
     }
 }
