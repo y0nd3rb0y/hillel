@@ -40,7 +40,7 @@ public class Person {
     public boolean equals(Object obj) {
         if(obj == null) return false;
         //if(obj instanceof Person){ soft case. is not correct
-        if(obj.getClass()!=Person.class) return false;
+        if(obj.getClass()!=this.getClass()) return false;
 
         Person person = (Person) obj;
         if(person.lastname==null || person.firstname==null || person.age==0) return false;
