@@ -5,7 +5,7 @@ public class TicTacToe extends JFrame {
 
     private Statistics statistics;
 
-    public TicTacToe(Statistics statistics){
+    public TicTacToe(){
 
         super("Tic Tac Toe");
 
@@ -14,36 +14,18 @@ public class TicTacToe extends JFrame {
         int x = screenSize.width;
         int y = screenSize.height;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize((int) Math.round(x * 0.8), (int) Math.round(y * 0.8));
+        setSize((int) Math.round(x * 0.5), (int) Math.round(y * 0.5));
         setLocationRelativeTo(null);
         setVisible(true);
-
+        Player playerX = new Human("Ivan", "Ivanov", 20, "X");
+        Player playerO = new AI.Builder("Petr", "O").lastname("Petrov").build();
+        ButtonPanel buttonPanel = new ButtonPanel(playerX, playerO, statistics.getInstance());
         LayoutManager layoutManager = new BorderLayout(5, 5);
         setLayout(layoutManager);
-        this.statistics = statistics;
-        this.play();
+        add(buttonPanel, BorderLayout.CENTER);
     }
-
-    public void play() {
-        while (true) {
-
-            Player playerX = new Human("Ivan", "Ivanov", 20, 'X');
-            Player playerO = new AI.Builder("Petr", 'O').lastname("Petrov").build();
-
-            Round round = new Round(playerX, playerO);
-
-            while (round.checkGameState()) {
-                round.makeMove();
-            }
-
-            if(round.isRoundFinished()) break;
-            statistics.addResult(new RoundResult(round.getWinner(), "wins"));
-        }
-        System.out.println(statistics);
-    }
-
-
-
 
 
 }
+
+

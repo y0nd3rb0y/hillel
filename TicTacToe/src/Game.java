@@ -5,7 +5,7 @@ public class Game {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new TicTacToe(Statistics.getInstance());
+                new TicTacToe();
             }
         });
 

@@ -14,9 +14,9 @@ public class AI extends Player {
         private String lastname;
         private String firstname;
         private int age;
-        private char mark;
+        private String mark;
 
-        public Builder(String firstname, char mark){
+        public Builder(String firstname, String mark){
             this.firstname = firstname;
             this.mark = mark;
         }
