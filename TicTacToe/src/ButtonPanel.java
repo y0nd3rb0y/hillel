@@ -10,6 +10,7 @@ public class ButtonPanel extends JPanel {
     private Player playerO;
     Player currentPlayer;
     Statistics statistics;
+    StatisticsControl statisticsControl;
     JButton [][] buttons = new JButton[3][3];
     GridBagConstraints gc = new GridBagConstraints();
     ButtonListener listener = new ButtonListener(buttons);
@@ -38,6 +39,13 @@ public class ButtonPanel extends JPanel {
         }
     }
 
+    public void setStatisticsControl(StatisticsControl statisticsControl) {
+        this.statisticsControl = statisticsControl;
+    }
+    public String getStatistics(){
+        return statistics.toString();
+    }
+
     public class ButtonListener implements ActionListener {
 
 
@@ -50,7 +58,9 @@ public class ButtonPanel extends JPanel {
                 if(checkBoardForMatch()){
 
                     JOptionPane.showMessageDialog(null, "Player " + currentPlayer + " wins!");
-                    //statistics.addResult(new RoundResult(round.getWinner(), "wins"));
+                    statistics.addResult(new RoundResult(currentPlayer, "wins"));
+                    statisticsControl.showStatistics();
+
                     initializeRound();
                 } else if(isBoardFull()){
                     JOptionPane.showMessageDialog(null, "The game is draw. No one looses!");
