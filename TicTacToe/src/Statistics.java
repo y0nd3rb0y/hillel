@@ -15,7 +15,7 @@ public class Statistics {
 
     public String toString(){
 
-        String statistics = "Player\t\t\t\tResult\t\t\tDate\n";
+        String statistics = "Player\tResult\tDate\n";
         for(RoundResult result : results){
             statistics += result+"\n";
         }

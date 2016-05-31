@@ -54,20 +54,12 @@ public class ButtonPanel extends JPanel {
 
             if(isButtonEmpty(button)){
                 button.setText(currentPlayer.getMark());
+                checkGameState();
 
-                if(checkBoardForMatch()){
-
-                    JOptionPane.showMessageDialog(null, "Player " + currentPlayer + " wins!");
-                    statistics.addResult(new RoundResult(currentPlayer, "wins"));
-                    statisticsControl.showStatistics();
-
-                    initializeRound();
-                } else if(isBoardFull()){
-                    JOptionPane.showMessageDialog(null, "The game is draw. No one looses!");
-                    initializeRound();
-                } else changeCurrentPlayer();
-
-
+            }
+            if(currentPlayer instanceof AI){
+                currentPlayer.makeMove(buttons);
+                checkGameState();
             }
         }
 
@@ -79,7 +71,7 @@ public class ButtonPanel extends JPanel {
             if (button.getText().equals("")) {
                 return true;
             }
-            System.out.println("Selected cell is blocked.");
+            JOptionPane.showMessageDialog(null, "This cell is blocked!");
             return false;
         }
 
@@ -91,6 +83,18 @@ public class ButtonPanel extends JPanel {
             }
             currentPlayer=playerX;
 
+        }
+
+        public void checkGameState(){
+            if(checkBoardForMatch()){
+                JOptionPane.showMessageDialog(null, "Player " + currentPlayer + " wins!");
+                statistics.addResult(new RoundResult(currentPlayer, "wins"));
+                statisticsControl.showStatistics();
+                initializeRound();
+            } else if(isBoardFull()){
+                JOptionPane.showMessageDialog(null, "The game is draw. No one looses!");
+                initializeRound();
+            } else changeCurrentPlayer();
         }
 
         public boolean checkBoardForMatch() {

@@ -1,15 +1,8 @@
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class Human extends Player {
-
-    @Override
-    public String makeMove() {
-        Scanner scanner = new Scanner(System.in);
-        String move = scanner.next();
-        return move;
-
-    }
 
     public Human(String firstname, String mark){
         this(firstname, "", mark);
@@ -23,5 +16,10 @@ public class Human extends Player {
         this.lastname = lastname;
         this.firstname = firstname;
         this.mark = mark;
+    }
+
+    @Override
+    public void makeMove(JButton[][] buttons) {
+
     }
 }

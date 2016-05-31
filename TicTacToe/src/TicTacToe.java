@@ -15,7 +15,8 @@ public class TicTacToe extends JFrame {
         int x = screenSize.width;
         int y = screenSize.height;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize((int) Math.round(x * 0.4), (int) Math.round(y * 0.4));
+        //setSize((int) Math.round(x * 0.4), (int) Math.round(y * 0.4));
+        setSize(800, 400);
         setLocationRelativeTo(null);
         setVisible(true);
         Player playerX = new Human("Ivan", "Ivanov", 20, "X");

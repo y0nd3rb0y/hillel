@@ -1,13 +1,19 @@
 
+import javax.swing.*;
 import java.util.Random;
 
 public class AI extends Player {
 
     @Override
-    public String makeMove() {
+    public void makeMove(JButton[][] buttons) {
         Random random = new Random();
-        String move = String.valueOf(random.nextInt(3)+1)+String.valueOf(random.nextInt(3)+1);
-        return move;
+        while(true) {
+            JButton button = buttons[random.nextInt(3)][random.nextInt(3)];
+            if(button.getText().equals("")){
+                button.setText(mark);
+                break;
+            }
+        }
     }
 
     public static class Builder{

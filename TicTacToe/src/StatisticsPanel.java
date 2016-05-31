@@ -5,7 +5,7 @@ public class StatisticsPanel extends JPanel{
     JTextArea statisticsField = new JTextArea();;
     public StatisticsPanel(){
         Dimension dimension = new Dimension();
-        dimension.width = 300;
+        dimension.width = 400;
         dimension.height = 300;
         statisticsField.setPreferredSize(dimension);
         add(statisticsField);

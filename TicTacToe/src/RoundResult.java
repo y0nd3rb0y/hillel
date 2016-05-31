@@ -26,7 +26,7 @@ public class RoundResult {
     }
 
     public String toString(){
-        return player.toString()+"\t\t\t"+result+"\t\t\t"+date;
+        return player.toString()+"\t"+result+"\t"+date;
     }
 
     public boolean equals(Object object){

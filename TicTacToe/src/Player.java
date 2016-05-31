@@ -1,3 +1,4 @@
+import javax.swing.*;
 
 public abstract class Player {
     String lastname;
@@ -13,7 +14,7 @@ public abstract class Player {
 
 
 
-    public abstract String makeMove();
+    public abstract void makeMove(JButton[][] buttons);
 
     public String toString(){
         return firstname+" "+lastname;
