@@ -1,4 +1,6 @@
-public class CustomLinkedList {
+import java.util.Iterator;
+
+public class CustomLinkedList<E> implements Iterable<E> {
 
     private Node first;
 
@@ -21,7 +23,7 @@ public class CustomLinkedList {
 
         return false;
     }
-    public void add(String value) throws ClassNotFoundException {
+    public void add(E value) {
         try {
             checkLoop(first);
             Node node = new Node();
@@ -38,6 +40,7 @@ public class CustomLinkedList {
                         node.prev = first;
                         break;
                     } else first = first.next;
+
 
                 } while (node.prev == null);
 
@@ -58,11 +61,31 @@ public class CustomLinkedList {
         }
     }
 
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            @Override
+            public boolean hasNext() {
+                return false;
+            }
+
+            @Override
+            public E next() {
+                return null;
+            }
+
+            @Override
+            public void remove() {
+
+            }
+        };
+    }
+
 
     class Node {
         public Node next;
         public Node prev;
-        public String value;
+        public E value;
     }
 
     private class LoopFoundException extends Exception {
