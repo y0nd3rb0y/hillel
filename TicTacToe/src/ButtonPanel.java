@@ -21,6 +21,8 @@ public class ButtonPanel extends JPanel {
         this.playerO = playerO;
         currentPlayer = playerX;
         this.statistics = statistics;
+        statistics.addPlayer(playerX);
+        statistics.addPlayer(playerO);
         LayoutManager layoutManager = new GridBagLayout();
         setLayout(layoutManager);
         //setVisible(true);

@@ -23,6 +23,7 @@ public class RoundResult {
         this.player = player;
         this.result = result;
         this.date = new Date();
+        player.setWins(player.getWins()+1);
     }
 
     public String toString(){

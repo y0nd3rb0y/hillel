@@ -5,7 +5,9 @@ public class Application {
 
         CustomLinkedList list = new CustomLinkedList();
         try {
+            list.add("first");
             list.add("second");
+            list.add("third");
         } catch (Exception e) {
             e.getMessage();
         }
