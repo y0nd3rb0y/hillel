@@ -3,7 +3,7 @@ public class GSMRequestFactory {
         GSMRequest request;
         switch(type) {
             case "cardValidation":
-                request = new CardValidationRequest();
+                request = new ValidationRequest();
                 break;
             case "accountValidation":
                 request = new AccountValidationRequest();
