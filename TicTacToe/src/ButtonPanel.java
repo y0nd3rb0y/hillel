@@ -90,7 +90,7 @@ public class ButtonPanel extends JPanel {
         public void checkGameState(){
             if(checkBoardForMatch()){
                 JOptionPane.showMessageDialog(null, "Player " + currentPlayer + " wins!");
-                statistics.addResult(new RoundResult(currentPlayer, "wins"));
+                statistics.addResult(new RoundResult(currentPlayer, Result.WIN));
                 statisticsControl.showStatistics();
                 initializeRound();
             } else if(isBoardFull()){

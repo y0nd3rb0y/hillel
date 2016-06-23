@@ -4,14 +4,14 @@ import java.util.Date;
 public class RoundResult {
 
     private Player player;
-    private String result;
+    private Result result;
     private Date date;
 
     public Player getPlayer() {
         return player;
     }
 
-    public String getRoundResult() {
+    public Result getRoundResult() {
         return result;
     }
 
@@ -19,7 +19,7 @@ public class RoundResult {
         return date;
     }
 
-    public RoundResult(Player player, String result) {
+    public RoundResult(Player player, Result result) {
         this.player = player;
         this.result = result;
         this.date = new Date();

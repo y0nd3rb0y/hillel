@@ -1,12 +1,14 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class TicTacToe extends JFrame {
 
     private Statistics statistics;
 
-    public TicTacToe(){
+    public TicTacToe() throws IOException, SQLException {
 
         super("Tic Tac Toe");
 
