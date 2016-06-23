@@ -8,6 +8,8 @@ public class ATM {
     private static boolean isGSMNetworkAvailable = true;
     private static boolean isCardInserted = false;
     private static final String ATM_ADDRESS = "Ukraine Odessa Shevchenka prosp. 10/1";
+    private static final String BANK_MAIL = "bank@bank.com";
+    private static final String TECHSUPPORT_MAIL = "tech@bank.com";
 
     public static String getAtmAddress() {
         return ATM_ADDRESS;
@@ -88,37 +90,34 @@ public class ATM {
             throw new NetworkUnavailableException("GSM Network is unavailable.");
         }
 
+
             ATM.printer = Printer.getInstance();
+            Session.getInstance(new Card("1234-1234-1234-1234"));
 
         } catch (CardInsertedException e){
-            log.error(e.getMessage());
+            log.warning(e.getMessage());
             storeInsertedCard();
-            informBank(e.getMessage());
+            sendMessage(BANK_MAIL, e.getMessage());
         } catch (PowerOffException e){
-            log.error(e.getMessage());
-            informTechService(e.getMessage());
+            log.warning(e.getMessage());
+            sendMessage(TECHSUPPORT_MAIL, e.getMessage());
         } catch (SessionOpenBeforeStartException e){
-            log.error("Session "+this.session.id+" has not closed properly. Informing bank.");
-            informBank(e.getMessage());
+            log.warning("Session "+this.session.getId()+" has not closed properly. Informing bank.");
+            sendMessage(TECHSUPPORT_MAIL, e.getMessage());
         } catch (NetworkUnavailableException e){
-            log.error(e.getMessage());
+            log.warning(e.getMessage());
             if(session != null){
-                session.stopSession();
+                session.stopSession(this);
 
             }
         }
     }
 
+    private void sendMessage(String contact, String message) {
+    }
+
     private void storeInsertedCard() {
     }
-
-    private GSMConnection establishGSMConnection(){
-        GSMConnection gsmConnection = new GSMConnection(security.getToken());
-        connections.add(gsmConnection);
-        return gsmConnection;
-    }
-
-
 
     public void ejectCard() {
         if(isCardInserted()) {
@@ -158,7 +157,9 @@ public class ATM {
 
         public static Printer getInstance() {
             if(instance == null) instance = new Printer();
+            System.out.println("Printer is ready");
             return instance;
         }
     }
+
 }

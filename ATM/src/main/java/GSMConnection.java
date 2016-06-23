@@ -3,6 +3,10 @@ public class GSMConnection {
     public GSMConnection(String token){
         this.token = token;
     }
+    public GSMResponse sendRequest(GSMRequest request){
+        GSMResponse response = request.getResponse();
+        return response;
+    }
 
 
 }

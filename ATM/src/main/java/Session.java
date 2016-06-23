@@ -1,19 +1,26 @@
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class Session {
+    private Logger log = Logger.getLogger("logger");
     private static Session instance = null;
     private static boolean isCardValid = false;
+
+    public long getId() {
+        return id;
+    }
+
     private long id;
     private Card card;
     private List<GSMConnection> connections;
-    private Security security;
+    private static Security security;
 
 
     private Session(Card card) {
         Date date = new Date();
         id = date.getTime() / 1000 * ATM.getAtmId();
-        security = Security.getInstance();
+        security = Security.getInstance(card);
         if (security.validate(card)) {
             this.card = card;
             setIsCardValid(true);
@@ -55,9 +62,17 @@ public class Session {
     }
 
 
-    private class Security {
+    private static class Security {
 
-        Security() {
+        private Security(Card card) {
+            this.card = card;
+        }
+        private Card card;
+        private static Security sec_instance;
+
+        public static Security getInstance(Card card){
+            if(sec_instance == null) sec_instance = new Security(card);
+            return sec_instance;
         }
 
         public String getToken() {
@@ -65,12 +80,16 @@ public class Session {
         }
 
         public boolean validate(Card card) {
-            if (ATM.isGSMNetworkAvailable()) {
-                Session.this.establishGSMConnection(getToken());
-            }
+            //if (ATM.isGSMNetworkAvailable()) {
+            //    Session.this.establishGSMConnection(getToken());
+            //}
+            return true;
         }
     }
 
-    private voind establishGSMConnection(String token) {
+    private GSMConnection establishGSMConnection(){
+        GSMConnection gsmConnection = new GSMConnection(security.getToken());
+        connections.add(gsmConnection);
+        return gsmConnection;
     }
 }
