@@ -10,8 +10,9 @@ public class JDBCTest {
         Properties properties = jdbcTest.loadProperties();
         Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("username"), properties.getProperty("password"));
         System.out.println("db connected");
-        jdbcTest.addStudent(connection);
-        jdbcTest.printStudents(connection);
+        //jdbcTest.addStudent(connection);
+        //jdbcTest.printStudents(connection);
+        jdbcTest.batchingExample(connection);
     }
 
     private Properties loadProperties() throws IOException {
@@ -46,6 +47,36 @@ public class JDBCTest {
         preparedStatement.setString(2, "Jones");
         preparedStatement.setInt(3, 29);
         preparedStatement.execute();
+    }
+
+    public void transactionExample(Connection connection) throws SQLException {
+        String sql1 = "insert into students(firstname, lastname, age) values('Andrew', 'Ivanov', 23)";
+        String sql2 = "insert into students(firstname, lastname, age) values('Ivan', 'Andreev', 22)";
+        connection.setAutoCommit(false);
+        Statement statement = connection.createStatement();
+        try {
+            statement.executeUpdate(sql1);
+            statement.executeUpdate(sql2);
+            connection.commit();
+        } catch (SQLException e) {
+            connection.rollback();
+        } finally {
+            connection.setAutoCommit(true);
+        }
+    }
+
+    public void batchingExample(Connection connection) throws SQLException {
+        String sql = "insert into students(firstname, lastname, age) values(?, ?, ?)";
+        connection.setAutoCommit(false);
+        PreparedStatement statement = connection.prepareStatement(sql);
+        for(int i=0; i<9; i++){
+            statement.setString(1, "Jake ");
+            statement.setString(2, "Finnson "+i);
+            statement.setInt(3, 29+i);
+            statement.addBatch();
+        }
+        statement.executeBatch();
+        connection.setAutoCommit(true);
     }
 
 }
