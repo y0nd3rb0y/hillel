@@ -7,6 +7,7 @@
     <groupId>com.java.courses</groupId>
     <artifactId>servlets</artifactId>
     <version>1.0</version>
+    <packaging>war</packaging>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
@@ -15,6 +16,8 @@
             <version>3.1.0</version>
         </dependency>
     </dependencies>
-
+<build>
+    <finalName>helloServlets</finalName>
+</build>
 
 </project>
