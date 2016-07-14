@@ -41,23 +41,16 @@ public class CustomBinaryTree {
 
     @Override
     public String toString() {
-        String tree;
+        String tree="";
         Node currentNode = root;
         while (true) {
             if (currentNode.leftChild != null) {
                 currentNode = currentNode.leftChild;
             } else {
+                tree+=currentNode.toString();
+                return tree;
             }
-
-            poutput(root)
-            output(root.left)
-            sout(root.key)
-            output(root.right)
-
         }
-        return "CustomBinaryTree{" +
-                tree +
-                '}';
     }
 
     public class Node {
